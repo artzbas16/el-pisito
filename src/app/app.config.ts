@@ -14,3 +14,5 @@ export const appConfig: ApplicationConfig = {
 
 //provideHttpClient() ES IMPRESINDIBLE PARA PODER INJECTAR httpClient EN LOS SERVICIOS
 //QUE SE ENCARGUEN DE CONTACTAR CON LA API
+
+//withInMemoryScrolling({scrollPositionRestoration: 'enabled})
