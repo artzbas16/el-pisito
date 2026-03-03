@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Credenciales } from '../models/dtos';
+import { Credenciales, CredencialesRespuesta } from '../models/dtos';
 import { Observable } from 'rxjs';
 import { URL_AUTH } from '../enviroments/globals';
 
@@ -10,8 +10,8 @@ import { URL_AUTH } from '../enviroments/globals';
 export class AuthService {
   private _http:HttpClient = inject(HttpClient);
 
-  login(datos:Credenciales):Observable<any>{
-    return this._http.post<any>(`${URL_AUTH}login`, datos, {withCredentials: true});
+  login(datos:Credenciales):Observable<CredencialesRespuesta>{
+    return this._http.post<CredencialesRespuesta>(`${URL_AUTH}login`, datos);
   }
 
 }
