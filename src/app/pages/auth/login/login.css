@@ -5,15 +5,6 @@
     padding: 1rem;
 }
 
-.contenedor-boton{
-    display: flex;
-    justify-content: right;
-}
-
-.contenedor-formulario{
-    padding: 2rem 0;
-}
-
 .contenedor-boton-registro{
     display: flex;
     justify-content: right;

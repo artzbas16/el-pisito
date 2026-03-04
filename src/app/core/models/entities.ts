@@ -4,14 +4,14 @@ export interface Inmobiliaria { //InmobiliariaImagenDTO en el servidor
     representante: string;
     telefono: string;
     activo?: boolean;
-    imagenes?: Array<Imagen>;
 }
 
 export interface Imagen { //Imagen en el servidor
-    id?: number;
-    url: string;
-    altImagen: string;
-    entidadId: number;
+    id?:number;
+    nombre:string;
+    entidadImagen:string;
+    entidadId:number;
+    altImagen:string;
 }
 
 export interface Inmueble { //Inmueble en el servidor
@@ -45,7 +45,6 @@ export interface Inmueble { //Inmueble en el servidor
     operacion: Operacion;
     poblacion: Poblacion;
     inmobiliaria: Inmobiliaria;
-    activo?: number;
     imagenes?: Array<Imagen>;
 }
 

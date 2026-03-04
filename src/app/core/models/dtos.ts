@@ -16,8 +16,10 @@ export interface ImagenDTO { //ImagenDTO en el servidor
     entidadId: number;
 }
 
-export interface BannerCarouselIdDTO{
-    id: number;
+export interface BannerIdDTO{
+
+    id:number;
+
 }
 
 export interface BannerImagenDTO { //BannerImagenDTO en el servidor
@@ -27,6 +29,10 @@ export interface BannerImagenDTO { //BannerImagenDTO en el servidor
     link: string;
     activo?: number;
     imagenes: Array<ImagenDTO>;
+}
+
+export interface BannerCarouselIdDTO{
+    id: number;
 }
 
 export interface BannerCarouselImagenDTO { //BannerCarouselImagenDTO en el servidor
