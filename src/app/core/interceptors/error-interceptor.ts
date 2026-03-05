@@ -3,11 +3,13 @@ import { inject } from '@angular/core';
 import { catchError, pipe, throwError } from 'rxjs';
 import { ErrorStoreService } from '../services/error-store-service';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth-service';
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
 
   let _errorStoreService = inject(ErrorStoreService);
   let _router = inject(Router);
+  let _authService = inject(AuthService);
 
   return next(req).pipe(
 
@@ -15,10 +17,21 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
 
       console.log(err);
 
-      //Aqui falta un if mirar!!!!
+      if(err.error.status == 401){
+        _authService.resetEstado();
+      }
+
+      //Aqui podemos checkear si el objeto err tiene un atributo "mensaje"
+      if(err.error.mensaje){//es un mensajeDTO
+        _errorStoreService.setErrorStatus(err.error.status);
+        _errorStoreService.setErrorMensaje(err.error.mensaje);
+      }
+      else{// es error de Spring Security
+        _errorStoreService.setErrorStatus(err.error.status);
+        _errorStoreService.setErrorMensaje(err.error.message);
+      }
       
-      _errorStoreService.setErrorStatus(err.error.status);
-      _errorStoreService.setErrorMensaje(err.error.message);
+      
 
       _router.navigate(['/error']);
       return throwError(() => err);

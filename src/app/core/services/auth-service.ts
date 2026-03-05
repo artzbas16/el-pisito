@@ -34,10 +34,19 @@ export class AuthService {
   logout():void{
     this._http.get<CredencialesRespuesta>(`${URL_AUTH}logout`).subscribe({
       next: (cr:CredencialesRespuesta) => {
-        this.usuario.set(null);
-        this.isLoggedIn.set(false);
-      }
+        this.resetEstado();
+      },
+      complete: () => {this._router.navigate(["/auth/login"])}
     });
+  }
+
+  //LO LLAMAMOS DESDE LE INTERCEPTOR error-iterceptor
+  //CUANDO SE PRODUCE UN 401
+  //TAMBIEN LO LLAMAMOS DESDE getMe()
+  resetEstado():void{
+    this.usuario.set(null);
+    this.isLoggedIn.set(false);
+    this.loading.set(false);
   }
 
   getMe():void{
@@ -49,9 +58,7 @@ export class AuthService {
           this.loading.set(false);
         }
         else{
-          this.usuario.set(null);
-          this.isLoggedIn.set(false);
-          this.loading.set(false);
+          this.resetEstado();
         }
       }
     });

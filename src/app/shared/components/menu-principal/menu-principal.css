@@ -13,6 +13,17 @@
     width: auto;
 }
 
+/* en el boton de logout al no tener link no aparece el cursor pointer por defecto*/
+.logout{
+    cursor: pointer;
+    font-weight:bolder;
+}
+
+.usuario{
+    background-color: var(--azul-logo);
+    border-radius: 8px;
+}
+
 /* ================================================= */
 /* MEDIA QUERIES */
 /* ================================================= */

@@ -10,6 +10,9 @@ import { AuthService } from '../../../core/services/auth-service';
 })
 export class MenuPrincipal {
 
+  // app inicia --> _authService.getMe() --> GET /me (cookie HttpOnly a API)
+  // --> API valida token --> signal isLoggedIn = true o false y signal loading se pone false 
+  // --> 
   public _authService:AuthService = inject(AuthService);
 
   logout():void{

@@ -8,7 +8,16 @@
 .contenedor-boton-registro{
     display: flex;
     justify-content: right;
+    flex-direction: column;
     align-items: center;
+}
+
+.contenedor-logos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 0.5rem;
+    gap: 10px;
 }
 
 .registro{
@@ -30,19 +39,16 @@ h6{
 .imagen-logo{
     height: 30px;
     filter: invert(1);
-    margin-right: 10px;
 }
 
 .imagen-logo2{
     height: 30px;
     filter: invert(0.8);
-    margin-right: 10px;
 }
 
 .imagen-logo3{
     height: 30px;
     filter: invert(0.6);
-    margin-right: 10px;
 }
 
 
