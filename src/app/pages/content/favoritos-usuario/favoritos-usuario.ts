@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { ListInmueble } from "../../../shared/components/list-inmueble/list-inmueble";
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-favoritos-usuario',
   imports: [ListInmueble],
-  templateUrl: './home.html',
-  styleUrl: './home.css',
+  templateUrl: './favoritos-usuario.html',
+  styleUrl: './favoritos-usuario.css',
 })
-export class Home {
-  
+export class FavoritosUsuario {
+
 }

@@ -1,4 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { InmuebleImagenDTO } from '../../../core/models/dtos';
+import { URL_API } from '../../../core/enviroments/globals';
+import { Observable } from 'rxjs/internal/Observable';
+import { Inmueble } from '../../../core/models/entities';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-list-inmueble',
@@ -7,5 +12,5 @@ import { Component } from '@angular/core';
   styleUrl: './list-inmueble.css',
 })
 export class ListInmueble {
-
+  
 }

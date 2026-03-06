@@ -1,1 +1,8 @@
-<p>list-inmueble works!</p>
+<section class="contenedor">
+    @if (_controlCargaService.cargaCompletada()) {
+        <p>Carga completada</p>
+    }
+    @else {
+        <app-preloader></app-preloader>
+    }
+</section>
