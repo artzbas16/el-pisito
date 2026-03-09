@@ -1,6 +1,10 @@
 <section class="contenedor">
     @if (_controlCargaService.cargaCompletada()) {
-        <p>Carga completada</p>
+        @for (inmueble of inmuebles(); track inmueble.id) {
+            
+            <app-ficha-inmueble [datos]="inmueble"></app-ficha-inmueble>
+
+        }
     }
     @else {
         <app-preloader></app-preloader>

@@ -6,10 +6,12 @@ import { AuthService } from '../../../core/services/auth-service';
 import { FinderData } from '../../../core/models/auxiliar';
 import { Preloader } from "../preloader/preloader";
 import { ControlCargaService } from '../../../core/services/control-carga-service';
+import { FichaInmueble } from "../ficha-inmueble/ficha-inmueble";
 
 @Component({
   selector: 'app-list-inmueble',
-  imports: [Preloader],
+  imports: [Preloader, FichaInmueble],
+  providers:[ControlCargaService],
   templateUrl: './list-inmueble.html',
   styleUrl: './list-inmueble.css',
 })
@@ -28,13 +30,13 @@ export class ListInmueble implements OnInit {
   public _controlCargaService:ControlCargaService = inject(ControlCargaService);
 
   usuarioId:number | undefined;
+  inmuebles = signal<Array<InmuebleImagenDTO>>([]);
 
   @Input() dondeEstoy:string;
   @Input() finderData:FinderData;
   @Input() idInmobiliaria: number;
 
   ngOnInit(): void {
-    this._controlCargaService.reset();
     this._controlCargaService.nFases.set(1);
     this._authService.getMe();//actualizamos la info del usuario
     this.usuarioId = this._authService.usuario()?.id; //El usuarioDTO es null si no estoy logueado
@@ -56,7 +58,7 @@ export class ListInmueble implements OnInit {
   getInmueblesPortada():void{
     this._inmuebleService.getInmueblesPortada().subscribe({
       next: (datos: Array<InmuebleImagenDTO>) => {
-        console.log(datos);
+        this.inmuebles.set(datos);
       },
       complete: () => {this._controlCargaService.faseCarga()}
     });
@@ -65,7 +67,7 @@ export class ListInmueble implements OnInit {
   getInmueblesFinder():void{
     this._inmuebleService.getInmueblesFinder(this.finderData.idTipo, this.finderData.idPoblacion, this.finderData.idOperacion).subscribe({
       next: (datos: Array<InmuebleImagenDTO>) => {
-        console.log(datos);
+        this.inmuebles.set(datos);
       },
       complete: () => {this._controlCargaService.faseCarga()}
     });
@@ -74,7 +76,7 @@ export class ListInmueble implements OnInit {
   getInmueblesInmobiliaria():void{
     this._inmuebleService.getInmueblesInmobiliaria(this.idInmobiliaria).subscribe({
       next: (datos: Array<InmuebleImagenDTO>) => {
-        console.log(datos);
+        this.inmuebles.set(datos);
       },
       complete: () => {this._controlCargaService.faseCarga()}
     });
@@ -84,7 +86,7 @@ export class ListInmueble implements OnInit {
     if(this.usuarioId){
       this._favoritosService.getFavoritosDatos(this.usuarioId).subscribe({
       next: (datos: Array<InmuebleImagenDTO>) => {
-        console.log(datos);
+        this.inmuebles.set(datos);
       },
       complete: () => {this._controlCargaService.faseCarga()}
     });

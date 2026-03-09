@@ -1,0 +1,33 @@
+<section class="contenedor">
+    @if (imagenes().length) {
+        <div id="carouselFicha{{datos.id}}" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                @for (imagen of imagenes(); track imagen.id; let i =$index) {
+                    <div [ngClass]="{
+                        'carousel-item':true,
+                        'active':i===0
+                    }">
+                        <img [src]=urlMedia+imagen.url class="d-block w-100" [alt]=imagen.altImagen>
+                    </div>
+                }                
+            </div>
+            @if (imagenes().length > 1) {
+                <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carouselFicha' + datos.id" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carouselFicha' + datos.id" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            }
+        </div>
+    }
+    @else {
+        <div class="contenedor-no-imagen">
+            <img src="assets/img/imagen-pisito-defecto.jpg" alt="inmueble sin imagen">
+        </div>
+    }
+
+    <app-gadget-numero-imagenes class="gadget" [numeroImagenes]="imagenes().length"></app-gadget-numero-imagenes>
+</section>
