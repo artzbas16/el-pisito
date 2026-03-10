@@ -9,7 +9,7 @@ import { GadgetLogoInmobiliaria } from "../gadget-logo-inmobiliaria/gadget-logo-
 
 @Component({
   selector: 'app-ficha-inmueble',
-  imports: [EurosPipe, BotonAdmin, CarouselFicha, GadgetLogoInmobiliaria],
+  imports: [EurosPipe, BotonAdmin, CarouselFicha, GadgetLogoInmobiliaria, CorazonFavoritos],
   templateUrl: './ficha-inmueble.html',
   styleUrl: './ficha-inmueble.css',
 })

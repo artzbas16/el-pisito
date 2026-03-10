@@ -19,6 +19,5 @@ export class CarouselFicha implements OnInit{
 
   ngOnInit(): void {
     this.imagenes.set(this.datos.imagenes);
-    console.log(this.imagenes());
   }
 }

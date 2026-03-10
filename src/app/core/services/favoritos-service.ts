@@ -26,12 +26,12 @@ export class FavoritosService {
   }
 
   //este metodo devuelve los InmuebleImagenDTO favoritos de un usuario
-  getFavoritosDatos(usuarioId: number):Observable<Array<InmuebleImagenDTO>>{
-    return this._http.get<Array<InmuebleImagenDTO>>(`${URL_API}favoritos-usuario/${usuarioId}`);
+  getFavoritosDatos(id: number):Observable<Array<InmuebleImagenDTO>>{
+    return this._http.get<Array<InmuebleImagenDTO>>(`${URL_API}favoritos-usuario/${id}`);
   }
 
-  getFavoritosId(usuarioId: number):Observable<Array<InmuebleIdDTO>>{
-    return this._http.get<Array<InmuebleIdDTO>>(`${URL_API}favoritos-usuario/${usuarioId}`);
+  getFavoritosId(id: number):Observable<Array<InmuebleIdDTO>>{
+    return this._http.get<Array<InmuebleIdDTO>>(`${URL_API}favoritosid-usuario/${id}`);
   }
   
 }
