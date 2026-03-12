@@ -2,7 +2,7 @@
     @if (_controlCargaService.cargaCompletada()) {
         @for (inmueble of inmuebles(); track inmueble.id) {
             
-            <app-ficha-inmueble [datos]="inmueble"></app-ficha-inmueble>
+            <app-ficha-inmueble [datos]="inmueble" [dondeEstoy]="dondeEstoy"></app-ficha-inmueble>
 
         }
     }

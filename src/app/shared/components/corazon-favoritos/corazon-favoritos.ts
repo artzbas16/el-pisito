@@ -4,6 +4,9 @@ import { Router, RouterLink } from "@angular/router";
 import { FavoritosService } from '../../../core/services/favoritos-service';
 import { InmuebleIdDTO, InmuebleImagenDTO } from '../../../core/models/dtos';
 import { ControlCargaService } from '../../../core/services/control-carga-service';
+import { ModalData } from '../../../core/models/auxiliar';
+import { ModalService } from '../../../core/services/modal-service';
+import { EurosPipe } from '../../pipes/euros-pipe';
 
 @Component({
   selector: 'app-corazon-favoritos',
@@ -17,18 +20,22 @@ export class CorazonFavoritos implements OnInit{
   @Input() elInmueble:InmuebleImagenDTO;
 
   public _authService:AuthService = inject(AuthService);
-
-  esFavorito=signal<boolean>(false);
-
   private _favoritoService:FavoritosService = inject(FavoritosService);
+  public _controlCargaService:ControlCargaService = inject(ControlCargaService);
+  private _router:Router=inject(Router);
+  private _modalService:ModalService = inject(ModalService);
+  
+  esFavorito=signal<boolean>(false);
 
   inmueble:InmuebleImagenDTO;
 
   inmueblesFavoritosId:Array<InmuebleIdDTO>;
 
-  public _controlCargaService:ControlCargaService = inject(ControlCargaService);
-
-  private _router:Router=inject(Router);
+  modalData:ModalData = {
+    titulo:"",
+    mensaje:"",
+    imagen:""
+  }
 
   ngOnInit(): void {
     this._controlCargaService.nFases.set(1);
@@ -53,8 +60,16 @@ export class CorazonFavoritos implements OnInit{
   deleteFavorito():void{
     if(this._authService.isLoggedIn()){
       this._favoritoService.deleteFavorito(this._authService.usuario()!.id, this.elInmueble.id).subscribe({
-        next: (inmbueble:InmuebleImagenDTO) => {this.inmueble = inmbueble},
-        complete: () => {this.esFavorito.set(false)}
+        next: (inmbueble:InmuebleImagenDTO) => {
+          this.inmueble = inmbueble;
+          this.modalData.titulo = "Inmueble eliminado a favoritos";
+          this.modalData.mensaje = `El inmueble situado en la ${this.inmueble.via} ${this.inmueble.nombreVia} de ${this.inmueble.poblacion?.nombre} (${this.inmueble.poblacion.provincia?.nombre}) con un precio de ${this.inmueble.precio}€ se ha eliminado de su lista de favoritos`;
+          this.modalData.imagen = "ok-modal.png";
+        },
+        complete: () => {
+          this.esFavorito.set(false);
+          this._modalService.open(this.modalData);
+        }
       })
     }
     else{
@@ -68,9 +83,19 @@ export class CorazonFavoritos implements OnInit{
     //pulsamos estos botones no estando logueados nos daria un error que evita este if
     if(this._authService.isLoggedIn()){
       this._favoritoService.addFavorito(this._authService.usuario()!.id, this.elInmueble.id).subscribe({
-        next: (inmbueble:InmuebleImagenDTO) => {this.inmueble = inmbueble},
+        next: (inmbueble:InmuebleImagenDTO) => {
+          this.inmueble = inmbueble;
+          this.modalData.titulo = "Nuevo inmueble añadido a favoritos";
+          this.modalData.mensaje = `El inmueble situado en la ${this.inmueble.via} ${this.inmueble.nombreVia} de ${this.inmueble.poblacion?.nombre} (${this.inmueble.poblacion.provincia?.nombre}) con un precio de ${this.inmueble.precio}€ se ha añadido a su lista de favoritos`;
+          this.modalData.imagen = "ok-modal.png";
+
+        },
         complete: () => {
-          this.esFavorito.set(true);
+          this.esFavorito.set(true); //para cambiar el corazon
+
+          //
+          this._modalService.open(this.modalData);
+
         }
       })
     }

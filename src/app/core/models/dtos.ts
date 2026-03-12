@@ -1,3 +1,4 @@
+import { EurosPipe } from "../../shared/pipes/euros-pipe";
 import { Operacion, Poblacion, Tipo } from "./entities";
 
 export interface Credenciales { //JWTRequest en servidor
@@ -73,7 +74,7 @@ export interface InmuebleImagenDTO { //InmuebleImagenDTO en el servidor
     id: number;
     via: string;
     claim: string;
-    numeroVia: string;
+    nombreVia: string;
     numero:String;
     planta: string;
     puerta: string;
@@ -99,7 +100,7 @@ export interface InmuebleImagenDTO { //InmuebleImagenDTO en el servidor
     tipo: Tipo;
     operacion: Operacion;
     poblacion: Poblacion;
-    inmobiliaria: InmobiliariaIdDTO;
+    inmobiliaria: InmobiliariaImagenDTO;
     activo: number;
     imagenes: Array<ImagenDTO>;
 }

@@ -5,11 +5,10 @@ import { BotonAdmin } from "../boton-admin/boton-admin";
 import { AuthService } from '../../../core/services/auth-service';
 import { CorazonFavoritos } from "../corazon-favoritos/corazon-favoritos";
 import { CarouselFicha } from "../carousel-ficha/carousel-ficha";
-import { GadgetLogoInmobiliaria } from "../gadget-logo-inmobiliaria/gadget-logo-inmobiliaria";
 
 @Component({
   selector: 'app-ficha-inmueble',
-  imports: [EurosPipe, BotonAdmin, CarouselFicha, GadgetLogoInmobiliaria, CorazonFavoritos],
+  imports: [EurosPipe, BotonAdmin, CarouselFicha, CorazonFavoritos],
   templateUrl: './ficha-inmueble.html',
   styleUrl: './ficha-inmueble.css',
 })
@@ -18,5 +17,6 @@ export class FichaInmueble {
   public _authService:AuthService = inject(AuthService);
 
   @Input() datos:InmuebleImagenDTO;
+  @Input() dondeEstoy:string;
 
 }

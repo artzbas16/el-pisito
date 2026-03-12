@@ -1,10 +1,10 @@
 <section class="contenedor">
     <header class="carousel-ficha">
-        <app-carousel-ficha [datos]="datos"></app-carousel-ficha>
+        <app-carousel-ficha [datos]="datos" [dondeEstoy]="dondeEstoy"></app-carousel-ficha>
     </header>
     <div class="datos-generales">
         <header class="cabecera-datos">
-            <h3 class="claim">{{datos.claim}} {{datos.poblacion.nombre}}</h3>
+            <h3 class="claim">{{datos.claim}} {{datos.poblacion.nombre}} ({{datos.poblacion.provincia.nombre}}) </h3>
             <p class="precio">{{datos.precio | euros}}</p>
             <p class="descripcion">{{datos.descripcion}}</p>
         </header>
@@ -29,9 +29,6 @@
      @if (_authService.isLoggedIn() && (_authService.usuario()?.rol === 'ROLE_ADMIN' || _authService.usuario()?.rol === 'ROLE_SUPERADMIN')) {
         <app-boton-admin [idInmueble]="datos.id"></app-boton-admin>
      }
-
-     <!-- LOGO INMOBILIARIA -->
-      <app-gadget-logo-inmobiliaria></app-gadget-logo-inmobiliaria>
 
      <app-corazon-favoritos class="corazon-favoritos" [elInmueble]="datos"></app-corazon-favoritos>
      

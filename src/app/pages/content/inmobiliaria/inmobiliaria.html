@@ -1,3 +1,15 @@
 <section class="contenedor">
+    @if (_controlCargaService.cargaCompletada()) {
+        <div class="datos-inmobiliaria">
+            <img [src]="url" [alt]="inmobiliaria.imagenes[0].altImagen" class="logo">
+            <p class="nombre">{{inmobiliaria.nombre}}</p>
+            <p class="mb-2">Representante: {{inmobiliaria.representante}}</p>
+            <p>Telefono: {{inmobiliaria.telefono}} </p>
+        </div>
+    }
+    @else {
+        <app-preloader></app-preloader>
+    }
+    
     <app-list-inmueble [dondeEstoy]="'inmobiliaria'" [idInmobiliaria]="idInmobiliaria"></app-list-inmueble>
 </section>
