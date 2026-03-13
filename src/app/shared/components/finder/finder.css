@@ -1,7 +1,51 @@
 /* ================================================= */
 /* FIRST MOBILE */
 /* ================================================= */
+.contenedor{
+    padding: 0.8rem;
+    background-color: var(--gris-logo);
+    border-radius: 0.5rem;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+}
 
+.formulario{
+    width: 100%;
+}
+
+.titulo-busqueda{
+    background-color: var(--azul-logo);
+    padding: 1rem;
+    color: white;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+}
+
+.imagen-logo{
+    height: 2rem;
+    width: auto;
+    filter: invert(1);
+    margin-left: 10px;
+}
+
+.imagen-logo2{
+    height: 2rem;
+    width: auto;
+    filter: invert(0.75);
+    margin-left: 10px;
+}
+
+.imagen-logo3{
+    height: 2rem;
+    width: auto;
+    filter: invert(0.5);
+    margin-left: 10px;
+}
 
 /* ================================================= */
 /* MEDIA QUERIES */

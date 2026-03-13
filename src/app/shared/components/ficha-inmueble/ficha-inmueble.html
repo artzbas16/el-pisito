@@ -27,7 +27,7 @@
     </div>
     <!-- BOTON ADMINISTRACION: soLO APARECERÁ SI EL USUARIO ESTA REGISTRADO Y ES ADMINISTRADOR O SUPER ADMINISTRADOR -->
      @if (_authService.isLoggedIn() && (_authService.usuario()?.rol === 'ROLE_ADMIN' || _authService.usuario()?.rol === 'ROLE_SUPERADMIN')) {
-        <app-boton-admin [idInmueble]="datos.id"></app-boton-admin>
+        <app-boton-admin class="boton-admin" [idInmueble]="datos.id"></app-boton-admin>
      }
 
      <app-corazon-favoritos class="corazon-favoritos" [elInmueble]="datos"></app-corazon-favoritos>

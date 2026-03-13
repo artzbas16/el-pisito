@@ -1,9 +1,14 @@
 <section class="contenedor">
     @if (_controlCargaService.cargaCompletada()) {
-        @for (inmueble of inmuebles(); track inmueble.id) {
-            
-            <app-ficha-inmueble [datos]="inmueble" [dondeEstoy]="dondeEstoy"></app-ficha-inmueble>
+        @if (inmuebles().length != 0) {
+            @for (inmueble of inmuebles(); track inmueble.id) {
+                
+                <app-ficha-inmueble [datos]="inmueble" [dondeEstoy]="dondeEstoy"></app-ficha-inmueble>
 
+            }
+        }
+        @else if(dondeEstoy != "home"){
+            <app-no-inmueble></app-no-inmueble>
         }
     }
     @else {

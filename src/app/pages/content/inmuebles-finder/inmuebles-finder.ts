@@ -3,10 +3,11 @@ import { ListInmueble } from "../../../shared/components/list-inmueble/list-inmu
 import { ActivatedRoute } from '@angular/router';
 import { FinderData } from '../../../core/models/auxiliar';
 import { Subscription } from 'rxjs';
+import { ContenedorBanners } from "../../../shared/components/contenedor-banners/contenedor-banners";
 
 @Component({
   selector: 'app-inmuebles-finder',
-  imports: [ListInmueble],
+  imports: [ListInmueble, ContenedorBanners],
   templateUrl: './inmuebles-finder.html',
   styleUrl: './inmuebles-finder.css',
 })

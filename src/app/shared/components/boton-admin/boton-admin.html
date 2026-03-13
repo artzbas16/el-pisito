@@ -1,1 +1,11 @@
-<p>boton-admin works!</p>
+<section class="contenedor" [routerLink]="['/admin/edit-inmueble', idInmueble]">
+
+    <div class="admin">
+        @if(_authService.usuario()?.rol === 'ROLE_ADMIN'){
+            <i class="fa-solid fa-user-pen"></i>
+        }
+        @else if (_authService.usuario()?.rol === 'ROLE_SUPERADMIN') {
+            <i class="fa-solid fa-user-astronaut"></i>
+        }
+    </div>
+</section>

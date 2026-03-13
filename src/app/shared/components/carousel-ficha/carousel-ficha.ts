@@ -4,10 +4,11 @@ import { URL_BASE } from '../../../core/enviroments/globals';
 import { CommonModule, NgClass } from "@angular/common";
 import { GadgetNumeroImagenes } from "../gadget-numero-imagenes/gadget-numero-imagenes";
 import { GadgetLogoInmobiliaria } from "../gadget-logo-inmobiliaria/gadget-logo-inmobiliaria";
+import { GadgetOportunidad } from "../gadget-oportunidad/gadget-oportunidad";
 
 @Component({
   selector: 'app-carousel-ficha',
-  imports: [NgClass, CommonModule, GadgetNumeroImagenes, GadgetLogoInmobiliaria],
+  imports: [NgClass, CommonModule, GadgetNumeroImagenes, GadgetLogoInmobiliaria, GadgetOportunidad],
   templateUrl: './carousel-ficha.html',
   styleUrl: './carousel-ficha.css',
 })

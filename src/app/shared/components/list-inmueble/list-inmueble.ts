@@ -7,10 +7,11 @@ import { FinderData } from '../../../core/models/auxiliar';
 import { Preloader } from "../preloader/preloader";
 import { ControlCargaService } from '../../../core/services/control-carga-service';
 import { FichaInmueble } from "../ficha-inmueble/ficha-inmueble";
+import { NoInmueble } from "../no-inmueble/no-inmueble";
 
 @Component({
   selector: 'app-list-inmueble',
-  imports: [Preloader, FichaInmueble],
+  imports: [Preloader, FichaInmueble, NoInmueble],
   providers:[ControlCargaService],
   templateUrl: './list-inmueble.html',
   styleUrl: './list-inmueble.css',

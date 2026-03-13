@@ -39,10 +39,10 @@ button.carousel-control-next{
     z-index: 11;
 }
 
-.oportunodad{
+.oportunidad{
     position: absolute;
-    top: 6px;
-    right: 110px;
+    top: 8px;
+    right: 125px;
     z-index: 12;
 }
 
@@ -63,6 +63,9 @@ button.carousel-control-next{
 /* MAYOR O IGUAL DE 768PX (A PARTIR DE 768PX INCLUSIVE) - SMARTPHONES GRANDES, TABLETS */
 @media only screen and (min-width:768px){
 
+    .contenedor{
+        position: static;
+    }
 
 
 }
