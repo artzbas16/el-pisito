@@ -1,10 +1,16 @@
-<section class="contenedor">
+<section class="contenedor" [routerLink]="'/'+datos.link">
     <div>
-        <img src="" alt="">
+        @if (imagenes()[0]) {
+            <img class="imagen" [src]="urlMedia+imagenes()[0]?.url" [alt]="imagenes()[0]?.altImagen">
+        }
+        @else {
+            <img src="assets/img/no-banner.jpg" alt="No banner imagen" class="imagen">
+        }
+        <img src="assets/img/el-pisito.svg" class="logito">
     </div>
 
-    <div>
-        <h3>titular</h3>
-        <p>claim</p>
+    <div class="texto">
+        <h3>{{datos.titular}}</h3>
+        <p>{{datos.claim}}</p>
     </div>
 </section>

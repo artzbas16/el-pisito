@@ -1,0 +1,8 @@
+.contenedor{
+    padding: 1rem;
+}
+
+.activo{
+    display: flex;
+    align-items: center;
+}

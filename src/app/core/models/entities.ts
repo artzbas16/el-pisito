@@ -108,4 +108,5 @@ export interface Tematica{
     nombre: string;
     actual?: number;
     activo?: number;
+    nBanners?: number; //Esto no lo recibimos de la API
 }

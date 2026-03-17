@@ -22,8 +22,10 @@ export class PaginaService {
     return this._http.get<Pagina>(`${URL_API}pagina/${id}`);
   }
 
-  getPaginaNombre(nombre: string): Observable<Pagina> {
-    return this._http.get<Pagina>(`${URL_API}pagina-nombre/${nombre}`);
+  getPaginaNombre(nombre:string):Observable<Pagina>{
+
+      return this._http.get<Pagina>(`${URL_API}pagina-nombre/${nombre}`);
+
   }
 
   addPagina(pagina: Pagina): Observable<Pagina> {

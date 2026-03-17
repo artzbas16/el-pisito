@@ -136,13 +136,13 @@ table{
 
 table .item-inactivo, table .item-noactual{
 	font-size: 1.2rem;
-	background-color: var(--rojo-tabla);
+	color: var(--rojo-tabla);
 	text-align: center;
 }
 
 table .item-activo, table .item-actual{
 	font-size: 1.2rem;
-	background-color: var(--verde-tabla);
+	color: var(--verde-tabla);
 	text-align: center;
 }
 

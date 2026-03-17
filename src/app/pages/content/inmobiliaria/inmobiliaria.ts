@@ -1,16 +1,17 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ListInmueble } from "../../../shared/components/list-inmueble/list-inmueble";
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { map, Subscription, switchMap } from 'rxjs';
 import { InmobiliariaService } from '../../../core/services/inmobiliaria-service';
 import { InmobiliariaImagenDTO } from '../../../core/models/dtos';
 import { ControlCargaService } from '../../../core/services/control-carga-service';
 import { Preloader } from "../../../shared/components/preloader/preloader";
 import { URL_MEDIA } from '../../../core/enviroments/globals';
+import { ContenedorBanners } from "../../../shared/components/contenedor-banners/contenedor-banners";
 
 @Component({
   selector: 'app-inmobiliaria',
-  imports: [ListInmueble, Preloader],
+  imports: [ListInmueble, Preloader, ContenedorBanners],
   providers: [ControlCargaService],
   templateUrl: './inmobiliaria.html',
   styleUrl: './inmobiliaria.css',
@@ -39,21 +40,36 @@ export class Inmobiliaria implements OnInit, OnDestroy{
   }
 
   getDatos():void{
+    //Este patron es el mas recomendable cuando se trata de extraer parametros de la URL
+    this.suscripcion = this._route.paramMap.pipe(
+      map(params => this.idInmobiliaria = Number(params.get("id"))), //Extrae id de la ruta
 
-    //Observable de tipo Hot
-    this.suscripcion = this._route.params.subscribe({
-      next: (params) => {
-        this.idInmobiliaria = params["id"];
-      }
-    })
-
-    this._inmobiliariaService.getInmobiliaria(this.idInmobiliaria).subscribe({
+      switchMap( //hace la llamada a la api usando ese id
+        id => this._inmobiliariaService.getInmobiliaria(this.idInmobiliaria))
+    ).subscribe({
       next: (datos:InmobiliariaImagenDTO) => {
         this.inmobiliaria = datos;
         this.url = `${URL_MEDIA}${this.inmobiliaria.imagenes[0].url}`;
+        this._controlCargaService.faseCarga();
       },
-      complete: () => {this._controlCargaService.faseCarga()}
-    })
+      complete: () => {}
+    });
+
+
+    //Observable de tipo Hot
+    // this.suscripcion = this._route.params.subscribe({
+    //   next: (params) => {
+    //     this.idInmobiliaria = params["id"];
+    //   }
+    // })
+
+    // this._inmobiliariaService.getInmobiliaria(this.idInmobiliaria).subscribe({
+    //   next: (datos:InmobiliariaImagenDTO) => {
+    //     this.inmobiliaria = datos;
+    //     this.url = `${URL_MEDIA}${this.inmobiliaria.imagenes[0].url}`;
+    //   },
+    //   complete: () => {this._controlCargaService.faseCarga()}
+    // })
 
   }
 

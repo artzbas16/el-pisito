@@ -1,1 +1,10 @@
-<p>contenedor-banners works!</p>
+<section class="contenedor">
+    @if (_controlCargaService.cargaCompletada()) {
+        @for (banner of banners(); track banner.id) {
+           <app-banner [datos]="banner"></app-banner> 
+        }
+    }
+    @else {
+        <app-preloader></app-preloader>
+    }
+</section>

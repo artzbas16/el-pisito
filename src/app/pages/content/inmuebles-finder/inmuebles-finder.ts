@@ -32,7 +32,6 @@ export class InmueblesFinder implements OnInit, OnDestroy{
   }
 
   getDatos():void{
-
     //Observable de tipo Hot
     this.suscripcion = this._route.params.subscribe({
       next: (params) => {

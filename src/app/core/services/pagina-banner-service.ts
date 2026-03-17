@@ -27,11 +27,11 @@ export class PaginaBannerService {
   }
 
   //Este metodo devuelve los banners de una pagina con el id de la pagina
-  getBannersPagina(paginaId:number): Observable<Array<BannerImagenDTO>>{
-    return this._http.get<Array<BannerImagenDTO>>(`${URL_API}banners-pagina/${paginaId}`);
+  getBannersPagina(id:number): Observable<Array<BannerImagenDTO>>{
+    return this._http.get<Array<BannerImagenDTO>>(`${URL_API}banners-pagina/${id}`);
   }
 
-  getBannersIdPagina(paginaId:number): Observable<Array<BannerIdDTO>>{
-    return this._http.get<Array<BannerIdDTO>>(`${URL_API}bannersid-pagina/${paginaId}`);
+  getBannersIdPagina(id:number): Observable<Array<BannerIdDTO>>{
+    return this._http.get<Array<BannerIdDTO>>(`${URL_API}bannersid-pagina/${id}`);
   }
 }
