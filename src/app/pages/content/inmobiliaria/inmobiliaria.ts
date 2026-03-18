@@ -1,10 +1,9 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { ListInmueble } from "../../../shared/components/list-inmueble/list-inmueble";
 import { ActivatedRoute } from '@angular/router';
 import { map, Subscription, switchMap } from 'rxjs';
 import { InmobiliariaService } from '../../../core/services/inmobiliaria-service';
 import { InmobiliariaImagenDTO } from '../../../core/models/dtos';
-import { ControlCargaService } from '../../../core/services/control-carga-service';
 import { Preloader } from "../../../shared/components/preloader/preloader";
 import { URL_MEDIA } from '../../../core/enviroments/globals';
 import { ContenedorBanners } from "../../../shared/components/contenedor-banners/contenedor-banners";
@@ -12,7 +11,6 @@ import { ContenedorBanners } from "../../../shared/components/contenedor-banners
 @Component({
   selector: 'app-inmobiliaria',
   imports: [ListInmueble, Preloader, ContenedorBanners],
-  providers: [ControlCargaService],
   templateUrl: './inmobiliaria.html',
   styleUrl: './inmobiliaria.css',
 })
@@ -20,7 +18,8 @@ export class Inmobiliaria implements OnInit, OnDestroy{
 
   private _route:ActivatedRoute = inject(ActivatedRoute);
   private _inmobiliariaService:InmobiliariaService = inject(InmobiliariaService);
-  public _controlCargaService:ControlCargaService = inject(ControlCargaService);
+
+  cargaCompletada = signal<boolean>(false);
 
   public idInmobiliaria:number;
 
@@ -31,7 +30,6 @@ export class Inmobiliaria implements OnInit, OnDestroy{
   url:string;
 
   ngOnInit(): void {
-    this._controlCargaService.nFases.set(1);
     this.getDatos();
   }
 
@@ -50,7 +48,7 @@ export class Inmobiliaria implements OnInit, OnDestroy{
       next: (datos:InmobiliariaImagenDTO) => {
         this.inmobiliaria = datos;
         this.url = `${URL_MEDIA}${this.inmobiliaria.imagenes[0].url}`;
-        this._controlCargaService.faseCarga();
+        this.cargaCompletada.set(true);
       },
       complete: () => {}
     });

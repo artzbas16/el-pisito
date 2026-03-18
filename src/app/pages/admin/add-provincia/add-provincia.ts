@@ -1,11 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ProvinciaService } from '../../../core/services/provincia-service';
+import { Provincia } from '../../../core/models/entities';
+import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-add-provincia',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './add-provincia.html',
   styleUrl: './add-provincia.css',
 })
 export class AddProvincia {
+  private _provinciaService:ProvinciaService = inject(ProvinciaService);
+  private _router:Router = inject(Router);
+
+  provincia:Provincia={
+
+    nombre:""
+
+  }
+
+
+  add():void{
+
+    this.provincia.nombre = this.provincia.nombre.toUpperCase();
+
+    this._provinciaService.addProvincia(this.provincia).subscribe({
+
+      next: (datos) => {this._router.navigate(["/admin/list-provincia"])}
+    });
+
+
+  }
 
 }

@@ -5,14 +5,12 @@ import { FavoritosService } from '../../../core/services/favoritos-service';
 import { AuthService } from '../../../core/services/auth-service';
 import { FinderData } from '../../../core/models/auxiliar';
 import { Preloader } from "../preloader/preloader";
-import { ControlCargaService } from '../../../core/services/control-carga-service';
 import { FichaInmueble } from "../ficha-inmueble/ficha-inmueble";
 import { NoInmueble } from "../no-inmueble/no-inmueble";
 
 @Component({
   selector: 'app-list-inmueble',
   imports: [Preloader, FichaInmueble, NoInmueble],
-  providers:[ControlCargaService],
   templateUrl: './list-inmueble.html',
   styleUrl: './list-inmueble.css',
 })
@@ -28,17 +26,16 @@ export class ListInmueble implements OnInit {
   private _inmuebleService: InmuebleService = inject(InmuebleService);
   private _favoritosService: FavoritosService = inject(FavoritosService);
   private _authService:AuthService = inject(AuthService);
-  public _controlCargaService:ControlCargaService = inject(ControlCargaService);
 
   usuarioId:number | undefined;
   inmuebles = signal<Array<InmuebleImagenDTO>>([]);
+  cargaCompletada = signal<boolean>(false);
 
   @Input() dondeEstoy:string;
   @Input() finderData:FinderData;
   @Input() idInmobiliaria: number;
 
   ngOnInit(): void {
-    this._controlCargaService.nFases.set(1);
     this._authService.getMe();//actualizamos la info del usuario
     this.usuarioId = this._authService.usuario()?.id; //El usuarioDTO es null si no estoy logueado
 
@@ -61,7 +58,7 @@ export class ListInmueble implements OnInit {
       next: (datos: Array<InmuebleImagenDTO>) => {
         this.inmuebles.set(datos);
       },
-      complete: () => {this._controlCargaService.faseCarga()}
+      complete: () => {this.cargaCompletada.set(true)}
     });
   }
 
@@ -70,7 +67,7 @@ export class ListInmueble implements OnInit {
       next: (datos: Array<InmuebleImagenDTO>) => {
         this.inmuebles.set(datos);
       },
-      complete: () => {this._controlCargaService.faseCarga()}
+      complete: () => {this.cargaCompletada.set(true)}
     });
   }
 
@@ -79,7 +76,7 @@ export class ListInmueble implements OnInit {
       next: (datos: Array<InmuebleImagenDTO>) => {
         this.inmuebles.set(datos);
       },
-      complete: () => {this._controlCargaService.faseCarga()}
+      complete: () => {this.cargaCompletada.set(true)}
     });
   }
 
@@ -89,7 +86,7 @@ export class ListInmueble implements OnInit {
       next: (datos: Array<InmuebleImagenDTO>) => {
         this.inmuebles.set(datos);
       },
-      complete: () => {this._controlCargaService.faseCarga()}
+      complete: () => {this.cargaCompletada.set(true)}
     });
     }
   }

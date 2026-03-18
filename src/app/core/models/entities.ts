@@ -65,7 +65,7 @@ export interface Poblacion {
     nombre: string;
     provincia: Provincia;
     activo?: number;
-    cp: string;
+    cp?: string;
 }
 
 export interface Provincia {
@@ -108,5 +108,4 @@ export interface Tematica{
     nombre: string;
     actual?: number;
     activo?: number;
-    nBanners?: number; //Esto no lo recibimos de la API
 }

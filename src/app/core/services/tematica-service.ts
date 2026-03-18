@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { URL_API } from '../enviroments/globals';
 import { Tematica } from '../models/entities';
+import { TematicaDTO } from '../models/dtos';
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +11,8 @@ import { Tematica } from '../models/entities';
 export class TematicaService {
     private _http: HttpClient = inject(HttpClient);
 
-  getTematicas(): Observable<Array<Tematica>> {
-    return this._http.get<Array<Tematica>>(`${URL_API}tematicas`);
+  getTematicas(): Observable<Array<TematicaDTO>> {
+    return this._http.get<Array<TematicaDTO>>(`${URL_API}tematicas`);
   }
 
   getTematicasActivas(): Observable<Array<Tematica>> {

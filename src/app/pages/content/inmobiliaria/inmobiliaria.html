@@ -1,5 +1,5 @@
 <section class="contenedor">
-    @if (_controlCargaService.cargaCompletada()) {
+    @if (cargaCompletada()) {
         <div class="datos-inmobiliaria">
             <img [src]="url" [alt]="inmobiliaria.imagenes[0].altImagen" class="logo">
             <p class="nombre">{{inmobiliaria.nombre}}</p>

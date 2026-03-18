@@ -1,5 +1,5 @@
 <section class="contenedor">
-    @if (_controlCargaService.cargaCompletada()) {
+    @if (cargaCompletada()) {
         <form #form="ngForm" (ngSubmit)="find()" class="formulario">
             <h6 class="titulo-busqueda">
                 <span>BUSCA TU INMUEBLE!!!</span>

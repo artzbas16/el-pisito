@@ -1,9 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { Preloader } from "../../../shared/components/preloader/preloader";
 import { TematicaService } from '../../../core/services/tematica-service';
-import { Tematica } from '../../../core/models/entities';
-import { TematicaBannerCarouselService } from '../../../core/services/tematica-banner-carousel-service';
-import { BannerCarouselImagenDTO } from '../../../core/models/dtos';
+import { TematicaDTO } from '../../../core/models/dtos';
 import { NgClass } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
@@ -16,10 +14,9 @@ import { RouterLink } from '@angular/router';
 export class ListTematica {
 
   private _tematicaService:TematicaService = inject(TematicaService);
-  private _tematicaBannerCarouselService:TematicaBannerCarouselService = inject(TematicaBannerCarouselService);
 
 
-  datos = signal<Array<Tematica>>([]);
+  datos = signal<Array<TematicaDTO>>([]);
 
   cargaCompletada = signal<boolean>(false);
 
@@ -34,20 +31,20 @@ export class ListTematica {
 
     this._tematicaService.getTematicas().subscribe({
 
-      next: (datos:Array<Tematica>) => {
+      next: (datos:Array<TematicaDTO>) => {
         this.datos.set(datos);
-
+        /*
         for(let laTematica of this.datos()){
 
-            this._tematicaBannerCarouselService.getBannersCarouselTematica(laTematica.id!).subscribe({
+             this._tematicaBannerCarouselService.getBannersCarouselTematica(laTematica.id!).subscribe({
 
               next:(datos:Array<BannerCarouselImagenDTO>)=>{
                 laTematica.nBanners = datos.length;//dejamos en cada objeto tematica el número de banners que tiene
               }
 
-            })
+            }) 
 
-        }
+        }*/
       },
       complete: () => {this.cargaCompletada.set(true)}
     });

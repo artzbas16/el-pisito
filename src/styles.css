@@ -214,3 +214,8 @@ th, td{
 	background-color: var(--amarillo-logo);
 	color: white;
 }
+
+.checkbox-alineado{
+	display: flex;
+    align-items: center;
+}

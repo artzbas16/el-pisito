@@ -112,3 +112,11 @@ export interface UsuarioDTO { //UsuarioDTO en el servidor
     activo: number;
 }
 
+export interface TematicaDTO{
+    id?: number;
+    nombre: string;
+    actual?: number;
+    activo?: number;
+    numeroBanners?: number;
+}
+

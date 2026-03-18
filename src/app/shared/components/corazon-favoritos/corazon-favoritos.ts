@@ -3,15 +3,13 @@ import { AuthService } from '../../../core/services/auth-service';
 import { Router, RouterLink } from "@angular/router";
 import { FavoritosService } from '../../../core/services/favoritos-service';
 import { InmuebleIdDTO, InmuebleImagenDTO } from '../../../core/models/dtos';
-import { ControlCargaService } from '../../../core/services/control-carga-service';
 import { ModalData } from '../../../core/models/auxiliar';
 import { ModalService } from '../../../core/services/modal-service';
-import { EurosPipe } from '../../pipes/euros-pipe';
 
 @Component({
   selector: 'app-corazon-favoritos',
   imports: [RouterLink],
-  providers:[ControlCargaService],
+  providers:[],
   templateUrl: './corazon-favoritos.html',
   styleUrl: './corazon-favoritos.css',
 })
@@ -21,9 +19,10 @@ export class CorazonFavoritos implements OnInit{
 
   public _authService:AuthService = inject(AuthService);
   private _favoritoService:FavoritosService = inject(FavoritosService);
-  public _controlCargaService:ControlCargaService = inject(ControlCargaService);
   private _router:Router=inject(Router);
   private _modalService:ModalService = inject(ModalService);
+
+  cargaCompletada = signal<boolean>(false);
   
   esFavorito=signal<boolean>(false);
 
@@ -38,12 +37,10 @@ export class CorazonFavoritos implements OnInit{
   }
 
   ngOnInit(): void {
-    this._controlCargaService.nFases.set(1);
     if(this._authService.isLoggedIn()){
       this.getFavorito();
     }
     else{
-      this._controlCargaService.faseCarga();
     }
   }
 
@@ -53,7 +50,7 @@ export class CorazonFavoritos implements OnInit{
         this.inmueblesFavoritosId = inmuebles;
         this.esFavorito.set(this.inmueblesFavoritosId.some(fav => fav.id === this.elInmueble.id)); 
       },
-      complete: () => {this._controlCargaService.faseCarga()}
+      complete: () => {this.cargaCompletada.set(true)}
     })
   }
 
