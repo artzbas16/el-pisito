@@ -62,7 +62,7 @@ export interface InmobiliariaImagenDTO { //InmobiliariaImagenDTO en el servidor
     nombre: string;
     telefono: string;
     representante: string;
-    activo: boolean;
+    activo: number;
     imagenes: Array<ImagenDTO>;
 }
 

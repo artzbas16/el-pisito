@@ -31,7 +31,7 @@ export class InmobiliariaService {
     return this._http.post<InmobiliariaImagenDTO>(`${URL_API}inmobiliaria`, inmobiliaria);
   }
 
-  editarInmueble(inmobiliaria: Inmobiliaria): Observable<InmobiliariaImagenDTO> {
+  editarInmobiliaria(inmobiliaria: Inmobiliaria): Observable<InmobiliariaImagenDTO> {
     return this._http.put<InmobiliariaImagenDTO>(`${URL_API}inmobiliaria`, inmobiliaria);
   }
   

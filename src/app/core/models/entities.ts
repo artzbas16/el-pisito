@@ -3,7 +3,7 @@ export interface Inmobiliaria { //InmobiliariaImagenDTO en el servidor
     nombre: string;
     representante: string;
     telefono: string;
-    activo?: boolean;
+    activo?: number;
 }
 
 export interface Imagen { //Imagen en el servidor
@@ -18,7 +18,7 @@ export interface Inmueble { //Inmueble en el servidor
     id?: number;
     via: string;
     claim: string;
-    numeroVia: string;
+    nombreVia: string;
     numero:String;
     planta: string;
     puerta: string;
@@ -45,7 +45,6 @@ export interface Inmueble { //Inmueble en el servidor
     operacion: Operacion;
     poblacion: Poblacion;
     inmobiliaria: Inmobiliaria;
-    imagenes?: Array<Imagen>;
 }
 
 export interface Tipo {

@@ -219,3 +219,7 @@ th, td{
 	display: flex;
     align-items: center;
 }
+
+.form-check-input{
+	margin-top: 0;
+}
